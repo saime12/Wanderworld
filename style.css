@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(27, 46, 46);
+}
+
+
+#world {
+    position: relative;
+}
+
+.playerDiv {
+    position: absolute;
+}
+
+.message {
+    image-rendering: pixelated;
+}
