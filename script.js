@@ -77,5 +77,4 @@ async function render() {
 setInterval(async function() {
     worldDiv.innerHTML = ""
     await render()
-}, 2000) 
-
+}, 1000) 
