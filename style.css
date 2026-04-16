@@ -2,7 +2,6 @@ body {
     background-color: rgb(69, 136, 136);
 }
 
-
 #world {
     position: relative;
     border: 1px solid #ddd;
@@ -16,8 +15,16 @@ body {
 .playerDiv {
     position: absolute;
     image-rendering: pixelated;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }
 
 .message {
     image-rendering: pixelated;
+}
+
+.playerDiv img {
+    width: 32px;
+    height: 32px;
+    display: block;
 }

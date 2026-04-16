@@ -3,7 +3,7 @@ const joinName = document.getElementById("joinName")
 const joinBtn = document.getElementById("joinBtn")
 const text = document.getElementById("text")
 const textBtn = document.getElementById("textBtn")
-let playerKey = ""
+let playerKey = "" 
 
 async function postJoin() {
     const resp = await fetch("https://tinkr.tech/sdb/wanderworld/wanderworld", {
@@ -26,7 +26,7 @@ async function postJoin() {
     }
 }
 
-async function postMove() {
+async function postMove(x, y) {
         const resp = await fetch("https://tinkr.tech/sdb/wanderworld/wanderworld", {
         method: 'POST',
         headers: {
@@ -35,8 +35,8 @@ async function postMove() {
         body: JSON.stringify({
             action: "move",
             player_key: playerKey,
-            x: 200,
-            Y: 100
+            x: x,
+            y: y
         })
     })
 }
@@ -55,6 +55,15 @@ async function sendMessage() {
     })
 }
 
+worldDiv.addEventListener('click', function(event) {
+    const rect = worldDiv.getBoundingClientRect()
+
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+
+    postMove(x, y)
+})
+
 textBtn.addEventListener('click', function() {
     sendMessage()
 })
@@ -63,7 +72,7 @@ joinBtn.addEventListener('click', async function() {
     await postJoin()
 })
 
-async function  getData() {
+async function getData() {
     const resp = await fetch("https://tinkr.tech/sdb/wanderworld/wanderworld")
     const data = await resp.json()
     return data.players
@@ -78,8 +87,8 @@ async function render() {
         const name = document.createElement("h5")
         name.textContent = player.username
         playerDiv.classList.add("playerDiv")
-        playerDiv.style.left = player.x + "px"
-        playerDiv.style.top = player.y + "px"
+        playerDiv.style.left = (player.x) + "px"
+        playerDiv.style.top = (player.y) + "px"
         img.src = "https://tinkr.tech" + player.image
 
         if(player.message !== null ) {
